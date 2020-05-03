@@ -40,23 +40,7 @@
         &noscript=1"/>
     </noscript>
     <!-- End Facebook Pixel Code -->
-    <script>
-        function sendEmailToAdmin() {
-            alert("Code to make AJAX Call");
-            var name = $('#nameForm').val();
-            var email = $('#emailForm').val();
-            var phone = $('#phoneForm').val();
-            var message = $('#messageForm').val();
-
-            console.log('Hello there');
-            console.log(name,email,phone,message);
-            const url = 'https://pciflooringcanada.com/.netlify/functions/send-email?name='+name+'&email='+email+'&phone='+phone+'&message='+message;
-            $.get(url, function(data, status){
-                alert("Data: " + data + "\nStatus: " + status);
-            });
-            return true;
-        }
-    </script>
+    
 </head>
 <body>
   <section class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
@@ -103,7 +87,7 @@
                 <div class="form-container">
                     <div class="media-container-column">
                         <!---Formbuilder Form--->
-                        <form name="sendEmail" onsubmit="return sendEmailToAdmin()" class="mbr-form form-with-styler">
+                        <form method="post" id="sendEmailForm" name="sendEmailForm" class="mbr-form form-with-styler">
                             <div class="row">
                                 <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Thanks for filling out the form!</div>
                                 <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -333,6 +317,35 @@
   <script src="assets/tether/tether.min.js"></script>
   <script src="assets/theme/js/script.js"></script>
   
+  <script>
+    $("#sendEmailForm").submit(function(e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $(this);
+        var url = form.attr('action');
+
+        var name = $('#nameForm').val();
+        var email = $('#emailForm').val();
+        var phone = $('#phoneForm').val();
+        var message = $('#messageForm').val();
+        const data = {
+            name,
+            email,
+            phone,
+            message,
+        };
+        $.ajax({
+            type: "POST",
+            url: 'https://pciflooringcanada.com/.netlify/functions/send-email',
+            data,
+            success: function(data){
+                alert("Form submitted successfully! We'll get back to you soon. Thank you.");
+            },
+            error: function(data){
+                alert("Error submitting your contact, please try again.");
+            },
+        });
+    });
+</script>
   
 </body>
 </html>
