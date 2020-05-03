@@ -20,7 +20,7 @@ exports.handler = async (event, context) => {
           html:
             '<html><body>' + htmlBody + '</body></html>'
         },
-        recipients: [ { address: 'pciflooringcontractor@gmail.com' }, { address: 'garfiaslopez@hotmail.com' }]
+        recipients: [ { address: 'garfiaslopez@hotmail.com' }] //{ address: 'pciflooringcontractor@gmail.com' },
     });
   } catch(err) {
     return { statusCode: 500, body: err.toString() }
