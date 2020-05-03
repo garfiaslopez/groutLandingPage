@@ -339,6 +339,7 @@
             data,
             success: function(data){
                 alert("Form submitted successfully! We'll get back to you soon. Thank you.");
+                $('#sendEmailForm')[0].reset();
             },
             error: function(data){
                 alert("Error submitting your contact, please try again.");

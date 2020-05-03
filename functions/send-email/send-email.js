@@ -2,10 +2,10 @@ const SparkPost = require('sparkpost');
 const client = new SparkPost(process.env.SPARKPOST);
 
 exports.handler = async (event, context) => {
-  const name = event.queryStringParameters.name || 'No Name'
-  const email = event.queryStringParameters.email || 'No email'
-  const phone = event.queryStringParameters.phone || 'No phone'
-  const message = event.queryStringParameters.message || 'No Message'
+  const name = event.body.name || 'No Name'
+  const email = event.body.email || 'No email'
+  const phone = event.body.phone || 'No phone'
+  const message = event.body.message || 'No Message'
 
   let htmlBody = '';
   [['name',name],['email',email],['phone',phone],['message',message]].forEach((e) => {
