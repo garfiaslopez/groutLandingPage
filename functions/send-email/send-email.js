@@ -1,11 +1,18 @@
 const SparkPost = require('sparkpost');
 const client = new SparkPost(process.env.SPARKPOST);
+const querystring = require('querystring');
 
 exports.handler = async (event, context) => {
-  const name = event.body.name || 'No Name'
-  const email = event.body.email || 'No email'
-  const phone = event.body.phone || 'No phone'
-  const message = event.body.message || 'No Message'
+
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
+  }
+  const params = querystring.parse(event.body);
+
+  const name = params.name || 'No Name'
+  const email = params.email || 'No email'
+  const phone = params.phone || 'No phone'
+  const message = params.message || 'No Message'
 
   let htmlBody = '';
   [['name',name],['email',email],['phone',phone],['message',message]].forEach((e) => {

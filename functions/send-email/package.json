@@ -9,6 +9,7 @@
   "author": "@garfiaslopez",
   "license": "ISC",
   "dependencies": {
+    "querystring": "^0.2.0",
     "sparkpost": "^2.1.4"
   }
 }
