@@ -1,0 +1,14 @@
+{
+  "name": "send-email",
+  "version": "1.0.0",
+  "description": "send email to sparkpost",
+  "main": "send-email.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@garfiaslopez",
+  "license": "ISC",
+  "dependencies": {
+    "sparkpost": "^2.1.4"
+  }
+}
